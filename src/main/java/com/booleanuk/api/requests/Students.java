@@ -40,7 +40,7 @@ public class Students {
     // Helper function to adhere to DRY and increase readability
     private Student getStudent(String firstName){
         return this.studentList.stream()
-                .filter(s -> s.getFirstName().equals(firstName))
+                .filter(s -> s.getFirstName().equalsIgnoreCase(firstName))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found"));
     }

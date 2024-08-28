@@ -40,7 +40,7 @@ public class Languages {
     // Helper function to adhere to DRY and increase readability
     private Language getLanguage(String name){
         return this.languageList.stream()
-                .filter(l -> l.getName().equals(name))
+                .filter(l -> l.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Language not found"));
     }
