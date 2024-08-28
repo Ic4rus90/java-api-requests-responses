@@ -1,7 +1,7 @@
 package com.booleanuk.api.requests;
 
-class Student {
-    private String firstName;
+public class Student {
+    private final String firstName;
     private String lastName;
 
     public Student(String firstName, String lastName) {
