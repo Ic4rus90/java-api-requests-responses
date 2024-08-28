@@ -31,32 +31,32 @@ public class Languages {
         return this.languageList;
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/{languageName}")
     @ResponseStatus(HttpStatus.OK)
-    public Language get(@PathVariable String name){
-        return getLanguage(name);
+    public Language get(@PathVariable String languageName){
+        return getLanguage(languageName);
     }
 
     // Helper function to adhere to DRY and increase readability
-    private Language getLanguage(String name){
+    private Language getLanguage(String languageName){
         return this.languageList.stream()
-                .filter(l -> l.getName().equalsIgnoreCase(name))
+                .filter(l -> l.getName().equalsIgnoreCase(languageName))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Language not found"));
     }
 
-    @PutMapping("/{name}")
+    @PutMapping("/{languageName}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Language update(@PathVariable String name, @RequestBody Language language){
-        Language existingLanguage = getLanguage(name);
+    public Language update(@PathVariable String languageName, @RequestBody Language language){
+        Language existingLanguage = getLanguage(languageName);
         existingLanguage.setName(language.getName());
         return existingLanguage;
     }
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/{languageName}")
     @ResponseStatus(HttpStatus.OK)
-    public Language delete(@PathVariable String name){
-        Language language = getLanguage(name);
+    public Language delete(@PathVariable String languageName){
+        Language language = getLanguage(languageName);
         this.languageList.remove(language);
         return language;
     }
